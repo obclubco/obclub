@@ -1,6 +1,6 @@
 # obclub
 
-The OB Club website ([www.obclub.co](https://www.obclub.co)): a static Next.js site hosted on GitHub Pages.
+The OB Club website ([obclub.co](https://obclub.co)): a static Next.js site hosted on GitHub Pages.
 
 ## Run locally
 
@@ -20,11 +20,11 @@ off `/events`. Pull requests are built but not deployed.
 One-time setup in the repo's **Settings**:
 
 1. **Pages → Build and deployment → Source:** choose **GitHub Actions**.
-2. **Pages → Custom domain:** enter `www.obclub.co`, then tick **Enforce HTTPS**
-   once the certificate is issued. At your DNS provider, add a `CNAME` record
-   for `www` pointing to `obclubco.github.io`, and `A` records for the apex
+2. **Pages → Custom domain:** `obclub.co` (already set), then tick **Enforce HTTPS**
+   once the certificate is issued. At your DNS provider, add `A` records for
    `obclub.co` pointing to `185.199.108.153`, `185.199.109.153`,
-   `185.199.110.153` and `185.199.111.153`.
+   `185.199.110.153` and `185.199.111.153`, plus a `CNAME` record for `www`
+   pointing to `obclubco.github.io` so `www.obclub.co` redirects to `obclub.co`.
 3. **Secrets and variables → Actions → Variables:** add
    `NEXT_PUBLIC_FORM_ENDPOINT` (see below).
 
