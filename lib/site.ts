@@ -19,7 +19,7 @@ export const OG_LOCALE = "en_US";
 // Default social banner. Next does NOT inherit a parent's openGraph.images once a
 // child route defines its own openGraph, so pages spread this into their images.
 export const OG_IMAGE = {
-  url: "/og",
+  url: "/og.png",
   width: 1200,
   height: 630,
   alt: `${SITE_NAME}: ${SITE_TAGLINE}`,

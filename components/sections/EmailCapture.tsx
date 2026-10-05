@@ -5,12 +5,13 @@ import { Arrow } from "../ui/primitives";
 import { Check } from "../ui/icons";
 import Consent from "../ui/Consent";
 import { CONSENT_TEXT_SUBSCRIBE } from "../../lib/legal";
+import { submitForm } from "../../lib/forms";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
 /**
- * Inline email capture. Posts to /api/subscribe, which stores the lead (with the
- * consent wording) for /admin/leads. Consent is required before submitting.
+ * Inline email capture. Sends the address, topic and the consent wording through
+ * lib/forms (Formspree). Consent is required before submitting.
  */
 export default function EmailCapture({
   topic,
@@ -42,16 +43,13 @@ export default function EmailCapture({
       return;
     }
     setStatus("submitting");
-    try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, topic, company: hp, consent, page: window.location.pathname }),
-      });
-      setStatus(res.ok ? "success" : "error");
-    } catch {
-      setStatus("error");
-    }
+    const ok = await submitForm({
+      subject: `New OB Club subscriber (${topic})`,
+      email: email.trim().toLowerCase(),
+      fields: { type: "subscribe", topic, consent, consentText: CONSENT_TEXT_SUBSCRIBE },
+      honeypot: hp,
+    });
+    setStatus(ok ? "success" : "error");
   }
 
   if (status === "success") {

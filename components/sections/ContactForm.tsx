@@ -7,6 +7,7 @@ import { Check } from "../ui/icons";
 import Select from "../ui/Select";
 import Consent from "../ui/Consent";
 import { CONSENT_TEXT_CONTACT } from "../../lib/legal";
+import { CONTACT_EMAIL as EMAIL, submitForm } from "../../lib/forms";
 
 const INTENTS = [
   "Join the community",
@@ -14,8 +15,6 @@ const INTENTS = [
   "Come on the podcast",
   "Something else",
 ];
-
-const EMAIL = "hello@obclub.co";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -54,16 +53,14 @@ export default function ContactForm() {
       return;
     }
     setStatus("submitting");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, consent, page: window.location.pathname }),
-      });
-      setStatus(res.ok ? "success" : "error");
-    } catch {
-      setStatus("error");
-    }
+    const name = form.name.trim();
+    const ok = await submitForm({
+      subject: `OB Club contact: ${form.intent} (${name})`,
+      email: form.email.trim(),
+      fields: { type: "contact", name, intent: form.intent, message: form.message.trim(), consent, consentText: CONSENT_TEXT_CONTACT },
+      honeypot: form.company,
+    });
+    setStatus(ok ? "success" : "error");
   }
 
   if (status === "success") {

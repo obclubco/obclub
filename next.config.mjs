@@ -3,29 +3,17 @@ import { dirname } from "path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const securityHeaders = [
-  { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "X-Frame-Options", value: "SAMEORIGIN" },
-  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  {
-    key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
-  },
-  {
-    key: "Strict-Transport-Security",
-    value: "max-age=63072000; includeSubDomains; preload",
-  },
-];
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // GitHub Pages hosts static files only: `next build` writes the whole site to out/.
+  output: "export",
   reactStrictMode: true,
   // We ship one lockfile per project; pin the tracing root so Next stops guessing
-  // the monorepo parent and bundles the right files on deploy.
+  // the monorepo parent.
   outputFileTracingRoot: __dirname,
-  images: { formats: ["image/avif", "image/webp"] },
-  async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
-  },
+  // No image optimization server on GitHub Pages; images are served as-is.
+  images: { unoptimized: true },
+  // Security headers can't be set on GitHub Pages (it serves its own); HTTPS is
+  // enforced in the repo's Pages settings instead.
 };
 export default nextConfig;

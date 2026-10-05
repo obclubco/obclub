@@ -4,7 +4,7 @@
 // advice. Have the privacy policy, terms and consent wording reviewed by a
 // qualified lawyer (Latvian / EU GDPR) before relying on it.
 
-export const LAST_UPDATED = "2026-09-25";
+export const LAST_UPDATED = "2026-10-05";
 
 export const COMPANY = {
   name: "OBCLUB, SIA",
@@ -26,25 +26,18 @@ export type Processor = {
 // Edit this list when a provider is added, removed or replaced.
 export const PROCESSORS: Processor[] = [
   {
-    name: "Vercel Inc.",
+    name: "GitHub, Inc. (GitHub Pages)",
     purpose: "Website hosting and server logs",
-    location: "EU region (company based in the US)",
+    location: "US (global content delivery network)",
     safeguards: "Standard Contractual Clauses",
-    privacyUrl: "https://vercel.com/legal/privacy-policy",
+    privacyUrl: "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
   },
   {
-    name: "Neon (Databricks)",
-    purpose: "Database for contact form and email sign-up submissions",
-    location: "EU region, Frankfurt (company based in the US)",
-    safeguards: "Standard Contractual Clauses",
-    privacyUrl: "https://www.databricks.com/legal/privacynotice",
-  },
-  {
-    name: "Resend",
-    purpose: "Email notifications about new submissions (optional)",
+    name: "Formspree, Inc.",
+    purpose: "Receives contact form and email sign-up submissions and forwards them to us by email",
     location: "US",
     safeguards: "Standard Contractual Clauses",
-    privacyUrl: "https://resend.com/legal/privacy-policy",
+    privacyUrl: "https://formspree.io/legal/privacy-policy",
   },
 ];
 
