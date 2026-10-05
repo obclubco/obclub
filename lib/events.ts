@@ -1,4 +1,4 @@
-// Event shape + seed data. Live events are managed in /admin/event (lib/content.ts).
+// Event shape + data. Add upcoming events to `upcomingEvents` below.
 export type OBEvent = {
   date: string; // ISO yyyy-mm-dd
   title: string;

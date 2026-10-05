@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { usePathname } from "next/navigation";
 
 // true until the first client mount finishes: the initial load paints the SSR
 // page directly (no curtain, no fade) so content is visible without waiting on JS.
@@ -56,12 +55,10 @@ function PageCurtain() {
 
 export default function Template({ children }: { children: React.ReactNode }) {
   const reduce = useReducedMotion();
-  const admin = (usePathname() || "").startsWith("/admin");
   const [initial] = useState(() => firstLoad);
   useEffect(() => {
     firstLoad = false;
   }, []);
-  if (admin) return <>{children}</>;
   const still = reduce || initial;
   return (
     <>

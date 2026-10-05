@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "../lib/site";
 import { getEpisodes, getPosts } from "../lib/content";
 
+// Static export: written to out/ at build time.
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [episodes, blogPosts] = await Promise.all([getEpisodes(), getPosts()]);
   const now = new Date();

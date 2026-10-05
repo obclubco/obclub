@@ -2,6 +2,9 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
+// Rendered once at build time into out/og.png (static export).
+export const dynamic = "force-static";
+
 // Default social share banner (1200x630). Referenced from layout metadata so
 // every page inherits it; podcast episodes override with the video thumbnail.
 export async function GET() {

@@ -7,7 +7,7 @@ import { COMPANY, PROCESSORS } from "../../lib/legal";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How OB Club collects, uses and protects personal data on obclub.co: contact form, email updates, cookieless analytics, and your rights under the GDPR.",
+    "How OB Club collects, uses and protects personal data on obclub.co: contact form, email updates, and your rights under the GDPR.",
   alternates: { canonical: "/privacy" },
   openGraph: {
     title: "Privacy Policy | OB Club",
@@ -56,7 +56,7 @@ export default function PrivacyPage() {
           <li>No user accounts or passwords for visitors.</li>
           <li>No payment details.</li>
           <li>No advertising or cross-site tracking cookies.</li>
-          <li>No IP addresses in our own analytics.</li>
+          <li>No website analytics or visitor tracking.</li>
           <li>We do not sell or rent personal data to anyone.</li>
         </ul>
 
@@ -88,20 +88,6 @@ export default function PrivacyPage() {
           emails sent before you did.
         </p>
 
-        <h3>Website analytics</h3>
-        <p>
-          We use our own first-party, cookieless analytics to understand which
-          pages are useful. For each page view we record the page path, the
-          referring page, the device type and a hash that rotates daily and is
-          salted, so we can count unique visits for one day without recognising
-          you across days. We set no cookies for this, store no IP address and
-          do no cross-site tracking.
-        </p>
-        <p>
-          <strong>Legal basis:</strong> our legitimate interest in running and
-          improving the website (Art. 6(1)(f)).
-        </p>
-
         <h3>Server logs</h3>
         <p>
           Like any website, our hosting provider automatically processes
@@ -117,9 +103,7 @@ export default function PrivacyPage() {
         <h2>Cookies</h2>
         <p>
           The public website sets no non-essential cookies, so there is no
-          cookie banner. The staff-only admin area uses one strictly necessary
-          session cookie to keep staff signed in. It is never set for ordinary
-          visitors.
+          cookie banner.
         </p>
 
         <h2>YouTube videos</h2>
@@ -177,10 +161,9 @@ export default function PrivacyPage() {
 
         <h2>Transfers outside the EU</h2>
         <p>
-          Submissions are stored in a database hosted in the EU, and the website
-          is served from an EU region. Some of our providers are companies based
-          in the United States. Where personal data may be accessed from or sent
-          outside the EU/EEA, we rely on the European Commission&apos;s Standard
+          The website is hosted on GitHub Pages and form submissions are
+          handled by Formspree. Both are companies based in the United States.
+          Where personal data may be accessed from or sent outside the EU/EEA, we rely on the European Commission&apos;s Standard
           Contractual Clauses. You can ask us for more detail on these
           safeguards.
         </p>
@@ -193,10 +176,6 @@ export default function PrivacyPage() {
           </li>
           <li>
             <strong>Email sign-ups:</strong> until you unsubscribe.
-          </li>
-          <li>
-            <strong>Analytics:</strong> raw events for 13 months, after which
-            only aggregated totals are kept.
           </li>
           <li>
             <strong>Server logs:</strong> for the period set by our hosting

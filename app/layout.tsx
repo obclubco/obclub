@@ -91,7 +91,7 @@ const orgJsonLd = {
   alternateName: "OBC",
   url: SITE_URL,
   logo: abs("/icon.png"),
-  image: abs("/og"),
+  image: abs("/og.png"),
   description: SITE_DESCRIPTION,
   foundingDate: "2026",
   areaServed: "Worldwide",
