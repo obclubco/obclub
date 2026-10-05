@@ -12,7 +12,7 @@ export const COMPANY = {
   regNo: "40203708734",
   address: "Mārupes nov., Mārupe, Lapiņu dambis 6, LV-2167, Latvia",
   email: "hello@obclub.co",
-  website: "https://www.obclub.co",
+  website: "https://obclub.co",
 } as const;
 
 export type Processor = {

@@ -1,9 +1,9 @@
 // Single source of truth for site-level SEO constants. Override the domain per
 // environment with NEXT_PUBLIC_SITE_URL (e.g. a preview URL); defaults to prod.
 
-// Primary domain: the apex 308-redirects to www, so www is canonical.
+// Primary domain: obclub.co (GitHub Pages redirects www to it).
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.obclub.co"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://obclub.co"
 ).replace(/\/$/, "");
 
 export const SITE_NAME = "OB Club";
