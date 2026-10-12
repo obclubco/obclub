@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: read
+  actions: read # download the previous deploy's files
   pages: write
   id-token: write
 
@@ -34,6 +35,27 @@ jobs:
         env:
           NEXT_PUBLIC_FORM_ENDPOINT: ${{ vars.NEXT_PUBLIC_FORM_ENDPOINT }}
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+      # Browsers may keep a page from GitHub Pages for 10 minutes. Ship the
+      # script and style files of the last week's deploys too (taken from the
+      # previous deploy), so a page cached just before a deploy still finds
+      # the files it asks for instead of rendering blank.
+      - name: Keep earlier deploys' script and style files
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          mkdir -p .keep .prev/site
+          prev=$(gh run list --workflow deploy.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty' || true)
+          if [ -n "$prev" ] && gh run download "$prev" -n github-pages -D .prev \
+            && tar -xf .prev/artifact.tar -C .prev/site && [ -d .prev/site/_next/static ]; then
+            cp -rp .prev/site/_next/static/. .keep/
+            find .keep -type f -mtime +7 -delete
+          else
+            echo "No earlier deploy to carry files over from; shipping this build's files only."
+          fi
+          cp -r out/_next/static/. .keep/
+          rm -rf out/_next/static && mv .keep out/_next/static
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:
