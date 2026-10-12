@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "../../components/sections/PageHero";
 import EventsEmpty from "../../components/sections/EventsEmpty";
 import EventsCalendar from "../../components/sections/EventsCalendar";
+import EventFeature from "../../components/sections/EventFeature";
 import { getEvents, getStats } from "../../lib/content";
 import CTA from "../../components/sections/CTA";
 import { OG_IMAGE } from "../../lib/site";
@@ -36,7 +37,10 @@ export default async function EventsPage() {
         secondary={{ label: "See the podcast", href: "/podcast" }}
       />
       {events.length > 0 ? (
-        <EventsCalendar events={events} />
+        <>
+          <EventFeature event={events[0]} />
+          {events.length > 1 && <EventsCalendar events={events} />}
+        </>
       ) : (
         <EventsEmpty members={stats.members} eventsHosted={stats.eventsHosted} />
       )}
