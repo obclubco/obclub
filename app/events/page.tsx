@@ -7,8 +7,6 @@ import { getEvents, getStats } from "../../lib/content";
 import CTA from "../../components/sections/CTA";
 import { OG_IMAGE } from "../../lib/site";
 
-const WHATSAPP = "https://chat.whatsapp.com/KJfMcHDByFaCrceZFesOp9?mode=gi_t";
-
 export const metadata: Metadata = {
   title: "Events: Private Dinners & Roundtables",
   description:
@@ -33,7 +31,6 @@ export default async function EventsPage() {
         title="Rooms worth showing up to."
         titleNowrap
         subtitle="No filler panels. Just the right people around one table, private dinners, roundtables, and socials built for real connection."
-        primary={{ label: "Join the Community", href: WHATSAPP }}
         secondary={{ label: "See the podcast", href: "/podcast" }}
       />
       {events.length > 0 ? (

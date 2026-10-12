@@ -2,20 +2,13 @@
 
 import { Section, Kicker } from "../ui/primitives";
 import { Reveal, SplitWords } from "../ui/motion";
-import { Chat, Handshake, ArrowUpRight } from "../ui/icons";
+import { Handshake, ArrowUpRight } from "../ui/icons";
 import ContactForm from "./ContactForm";
 
-const WHATSAPP = "https://chat.whatsapp.com/KJfMcHDByFaCrceZFesOp9?mode=gi_t";
 const CALENDLY = "https://calendly.com/obclubco/30min";
 const EMAIL = "hello@obclub.co";
 
 const channels = [
-  {
-    icon: <Chat className="h-5 w-5" />,
-    label: "Join the community",
-    value: "Free WhatsApp room",
-    href: WHATSAPP,
-  },
   {
     icon: <Handshake className="h-5 w-5" />,
     label: "Partnerships",

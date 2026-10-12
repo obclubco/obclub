@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Section, Button } from "../../../../components/ui/primitives";
+import { Section } from "../../../../components/ui/primitives";
 import { ArrowUpRight } from "../../../../components/ui/icons";
 import { getEpisode, getPost, getPosts, getPostsForEpisode } from "../../../../lib/content";
 import { abs, OG_IMAGE } from "../../../../lib/site";
 
-const WHATSAPP = "https://chat.whatsapp.com/KJfMcHDByFaCrceZFesOp9?mode=gi_t";
 
 export async function generateStaticParams() {
   return (await getPosts()).map((p) => ({ slug: p.episodeSlug, post: p.slug }));
@@ -152,12 +151,6 @@ export default async function BlogPostPage({
             ))}
           </div>
 
-          <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-[var(--border)] pt-10 sm:flex-row sm:items-center">
-            <p className="serif max-w-[26ch] text-[clamp(19px,2.2vw,24px)] font-bold">
-              Get lessons like this from the room itself.
-            </p>
-            <Button href={WHATSAPP}>Join Free Community</Button>
-          </div>
         </article>
       </Section>
 

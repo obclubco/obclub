@@ -44,7 +44,6 @@ export default async function PodcastPage() {
         title="Behind the Business."
         subtitle="Real stories, real numbers, real lessons, every episode distilled into the takeaways that actually move a business."
         icon={<Mic className="h-3.5 w-3.5" />}
-        primary={{ label: "Join Free Community", href: "https://chat.whatsapp.com/KJfMcHDByFaCrceZFesOp9?mode=gi_t" }}
       />
       <PodcastIndex episodes={episodes} />
       <CTA />
