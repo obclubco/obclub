@@ -219,7 +219,7 @@ export function CountUp({
 import { useEffect, useRef, useState } from "react";
 function Counter({ to, suffix }: { to: number; suffix: string }) {
   const reduce = useReducedMotion();
-  const [val, setVal] = useState(reduce ? to : 0);
+  const [val, setVal] = useState(0); // match the server render; the effect fills in `to`
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
   useEffect(() => {
