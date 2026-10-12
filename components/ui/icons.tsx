@@ -20,6 +20,18 @@ export const Calendar = (p: P) => (
     <path d="M3 9h18M8 2v4M16 2v4" />
   </svg>
 );
+export const Clock = (p: P) => (
+  <svg {...base(p)}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5l3 2" />
+  </svg>
+);
+export const Pin = (p: P) => (
+  <svg {...base(p)}>
+    <path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z" />
+    <circle cx="12" cy="9.5" r="2.5" />
+  </svg>
+);
 export const Users = (p: P) => (
   <svg {...base(p)}>
     <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2" />

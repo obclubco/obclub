@@ -4,9 +4,7 @@ import { useMemo, useState } from "react";
 import { Section, Kicker } from "../ui/primitives";
 import { Reveal, SplitWords } from "../ui/motion";
 import { Calendar as CalIcon } from "../ui/icons";
-import { fmtDay, type OBEvent } from "../../lib/events";
-
-const WHATSAPP = "https://chat.whatsapp.com/KJfMcHDByFaCrceZFesOp9?mode=gi_t";
+import { APPLY_URL, fmtDay, type OBEvent } from "../../lib/events";
 
 const DOW = ["M", "T", "W", "T", "F", "S", "S"];
 const MONTHS = [
@@ -183,12 +181,12 @@ export default function EventsCalendar({ events }: { events: OBEvent[] }) {
                   </span>
                 </button>
                 <a
-                  href={e.url || WHATSAPP}
+                  href={e.url || APPLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex min-h-[44px] shrink-0 items-center rounded-full border border-[var(--border-2)] px-4 text-[13px] text-[var(--text-muted)] transition-colors hover:border-white/60 hover:text-[var(--text)]"
                 >
-                  Reserve
+                  Apply
                 </a>
                 </div>
               );
