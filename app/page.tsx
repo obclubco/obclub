@@ -53,7 +53,7 @@ export default async function Home() {
       <Pricing latest={teaser} />
       <Integrations partners={partners} />
       <FAQ faqs={faqs} />
-      <CTA />
+      <CTA join />
     </main>
   );
 }

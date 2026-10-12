@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button, Arrow } from "../ui/primitives";
 import { Menu, Close } from "../ui/icons";
 
@@ -39,6 +40,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const home = usePathname() === "/"; // "Join Community" shows on the homepage only
 
   useEffect(() => {
     const id = setTimeout(() => setMounted(true), 60);
@@ -113,9 +115,11 @@ export default function Nav() {
             ))}
           </ul>
 
-          <motion.div {...reveal(0.5 + links.length * 0.08)} className="hidden lg:block">
-            <Button href={WHATSAPP}>Join Community</Button>
-          </motion.div>
+          {home && (
+            <motion.div {...reveal(0.5 + links.length * 0.08)} className="hidden lg:block">
+              <Button href={WHATSAPP}>Join Community</Button>
+            </motion.div>
+          )}
 
           {/* hamburger → morphs to X; toggles the in-pill expansion */}
           <button
@@ -174,11 +178,13 @@ export default function Nav() {
                   </motion.li>
                 ))}
               </motion.ul>
-              <motion.div variants={menuItem} initial="hidden" animate="show" className="py-4">
-                <Button href={WHATSAPP} className="w-full">
-                  Join Community
-                </Button>
-              </motion.div>
+              {home && (
+                <motion.div variants={menuItem} initial="hidden" animate="show" className="py-4">
+                  <Button href={WHATSAPP} className="w-full">
+                    Join Community
+                  </Button>
+                </motion.div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

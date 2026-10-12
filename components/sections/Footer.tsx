@@ -1,6 +1,7 @@
 import { Button } from "../ui/primitives";
 import { Reveal } from "../ui/motion";
 import Wordmark from "./Wordmark";
+import HomeOnly from "../HomeOnly";
 import {
   IgYouTube,
   IgInstagram,
@@ -56,9 +57,11 @@ export default async function Footer() {
           Where entrepreneurs meet, network, and build real business. A private
           ecosystem for builders, founders, and ambitious operators.
         </p>
-        <div className="mt-7">
-          <Button href={WHATSAPP}>Join Our Free Community</Button>
-        </div>
+        <HomeOnly>
+          <div className="mt-7">
+            <Button href={WHATSAPP}>Join Our Free Community</Button>
+          </div>
+        </HomeOnly>
         <div className="mt-7 flex flex-wrap justify-center gap-2">
           {socials.map(([href, label, icon], i) => (
             <a
@@ -84,7 +87,7 @@ export default async function Footer() {
               <ul className="mt-4 space-y-3">
                 {c.links.map(([label, href]) => {
                   const external = /^https?:\/\//.test(href);
-                  return (
+                  const item = (
                     <li key={label}>
                       <a
                         href={href}
@@ -95,6 +98,7 @@ export default async function Footer() {
                       </a>
                     </li>
                   );
+                  return href === WHATSAPP ? <HomeOnly key={label}>{item}</HomeOnly> : item;
                 })}
               </ul>
             </div>

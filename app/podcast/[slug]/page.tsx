@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import YouTube from "../../../components/ui/YouTube";
-import { Button, Section } from "../../../components/ui/primitives";
+import { Section } from "../../../components/ui/primitives";
 import { Reveal } from "../../../components/ui/motion";
 import { ArrowUpRight, Check, Mic, Quote } from "../../../components/ui/icons";
 import { getEpisode, getEpisodes, getPostsForEpisode } from "../../../lib/content";
 import { OG_IMAGE } from "../../../lib/site";
 
-const WHATSAPP = "https://chat.whatsapp.com/KJfMcHDByFaCrceZFesOp9?mode=gi_t";
 
 export async function generateStaticParams() {
   return (await getEpisodes()).map((e) => ({ slug: e.slug }));
@@ -239,13 +238,6 @@ export default async function EpisodePage({
             </ul>
           </div>
 
-          {/* inline CTA */}
-          <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-[var(--border)] pt-10 sm:flex-row sm:items-center">
-            <p className="serif max-w-[24ch] text-[clamp(20px,2.4vw,26px)] font-bold">
-              Want the room these lessons come from?
-            </p>
-            <Button href={WHATSAPP}>Join Free Community</Button>
-          </div>
         </div>
       </Section>
 
