@@ -39,7 +39,7 @@ export function ParallaxImage({
   return (
     <div ref={ref} className={className}>
       <motion.div
-        style={reduce ? undefined : { y, scale: s }}
+        style={reduce ? { y: 0, scale: 1 } : { y, scale: s }}
         className="h-full w-full will-change-transform"
       >
         {children}
@@ -64,18 +64,16 @@ export function Reveal({
   const ref = useRef(null);
   const reduce = useReducedMotion();
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  if (reduce) return <div className={className}>{children}</div>;
+  const hidden = { opacity: 0, y, filter: blur ? "blur(10px)" : "blur(0px)" };
+  // Keep the same element with reduced motion and just show it at once. Swapping
+  // in a plain <div> in the browser leaves the server's hidden styles on the page.
   return (
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y, filter: blur ? "blur(10px)" : "blur(0px)" }}
-      animate={
-        inView
-          ? { opacity: 1, y: 0, filter: "blur(0px)" }
-          : { opacity: 0, y, filter: blur ? "blur(10px)" : "blur(0px)" }
-      }
-      transition={{ duration: 0.8, ease: EASE, delay }}
+      initial={hidden}
+      animate={reduce || inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : hidden}
+      transition={reduce ? { duration: 0 } : { duration: 0.8, ease: EASE, delay }}
     >
       {children}
     </motion.div>
@@ -116,7 +114,7 @@ export function SplitWords({
   const reduce = useReducedMotion();
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const words = text.split(" ");
-  if (reduce) return <span className={className}>{text}</span>;
+  // Same markup with reduced motion (see Reveal); the words just appear at once.
   return (
     <span ref={ref} className={className} style={{ display: "inline" }}>
       {words.map((w, i) => (
@@ -126,8 +124,8 @@ export function SplitWords({
           <motion.span
             style={{ display: "inline-block" }}
             initial={{ opacity: 0, y: "0.9em" }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: "0.9em" }}
-            transition={{ duration: 0.7, ease: EASE, delay: delay + i * 0.05 }}
+            animate={reduce || inView ? { opacity: 1, y: 0 } : { opacity: 0, y: "0.9em" }}
+            transition={reduce ? { duration: 0 } : { duration: 0.7, ease: EASE, delay: delay + i * 0.05 }}
           >
             {w}
           </motion.span>
