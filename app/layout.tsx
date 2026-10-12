@@ -115,6 +115,16 @@ const siteJsonLd = {
   publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
 };
 
+// Entrance animations render content hidden (opacity 0) until the page's scripts
+// run. If they never do (a browser holding an old cached page right after a
+// deploy, a blocked script, JS turned off), fade everything in after a short
+// wait instead of leaving the page blank. SiteChrome sets data-ready on <html>
+// as soon as the scripts are running, which switches this off.
+const SCRIPTLESS_FALLBACK =
+  'html:not([data-ready]) [style*="opacity:0;"],html:not([data-ready]) [style$="opacity:0"]' +
+  "{animation:obc-show .6s ease 2.5s forwards}" +
+  "@keyframes obc-show{to{opacity:1;transform:none;filter:none}}";
+
 export default function RootLayout({
   children,
 }: {
@@ -122,6 +132,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${remark.variable} ${signage.variable}`}>
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: SCRIPTLESS_FALLBACK }} />
+      </head>
       <body>
         <script
           type="application/ld+json"
